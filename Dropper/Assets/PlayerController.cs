@@ -6,6 +6,7 @@ public class PlayerController : MonoBehaviour
 {
    public float _baseSpeed = 10.0f;
    public float _gravidade = 9.8f;
+   public float _sensitivity = 2.0f;
 
    //Referência usada para a câmera filha do jogador
    GameObject playerCamera;
@@ -37,8 +38,8 @@ public class PlayerController : MonoBehaviour
 
        
         //Tratando movimentação do mouse
-        float mouse_dX = Input.GetAxis("Mouse X");
-        float mouse_dY = Input.GetAxis("Mouse Y");
+        float mouse_dX = Input.GetAxis("Mouse X")*_sensitivity;
+        float mouse_dY = Input.GetAxis("Mouse Y")*_sensitivity;
        
         //Tratando a rotação da câmera
         cameraRotation -= mouse_dY;
@@ -49,4 +50,5 @@ public class PlayerController : MonoBehaviour
 
         playerCamera.transform.localRotation = Quaternion.Euler(cameraRotation, 0.0f, 0.0f);
    }
+
 }
