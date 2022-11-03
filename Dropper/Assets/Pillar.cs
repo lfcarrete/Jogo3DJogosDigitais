@@ -7,10 +7,14 @@ public class Pillar : MonoBehaviour
 {
     public Object player;
     private string _currentScene;
+    public AudioSource audioSource;
+    public AudioClip clip;
+    public float deltaDeath;
     // Start is called before the first frame update
     void Start()
     {
         _currentScene = SceneManager.GetActiveScene().name;
+        audioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -22,8 +26,13 @@ public class Pillar : MonoBehaviour
     void OnTriggerEnter(Collider other)
     {
         if(other.gameObject.tag == "Player"){
-            Destroy(player);
-            SceneManager.LoadScene(_currentScene);
+            audioSource.PlayOneShot(clip);
+            
+            Invoke("changeScene", clip.length - deltaDeath);
         }
+    }
+    void changeScene(){
+        Destroy(player);
+        SceneManager.LoadScene(_currentScene);
     }
 }

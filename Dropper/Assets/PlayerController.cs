@@ -8,12 +8,13 @@ public class PlayerController : MonoBehaviour
    public float _gravidade = 9.8f;
    public float _sensitivity = 2.0f;
    private bool _Menu;
-
+   public GameObject heartSound;
    //Referência usada para a câmera filha do jogador
    GameObject playerCamera;
    //Utilizada para poder travar a rotação no angulo que quisermos.
    float cameraRotation;
    CharacterController characterController;
+   private bool boolHasDied;
 
    void Start()
    {
@@ -33,6 +34,9 @@ public class PlayerController : MonoBehaviour
           float y = 0;
           if(!characterController.isGrounded){
                y = -_gravidade;
+          }
+          if(playerCamera.transform.position[1] < 8){
+               Destroy(heartSound);
           }
           
           Vector3 direction = transform.right * x + transform.up * y + transform.forward * z;
