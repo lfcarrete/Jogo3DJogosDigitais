@@ -1,13 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class VictoryPlane : MonoBehaviour
 {
+    public string scenename;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+       
     }
 
     // Update is called once per frame
@@ -18,6 +21,6 @@ public class VictoryPlane : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        print("Hello");
+        SceneManager.LoadScene(scenename);
     }
 }
